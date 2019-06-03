@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Панель Администратора</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../main.css" />
+</head>
+<body>
+<div class="container-fluid fill-height" style="">
+
+    <div th:replace="~{user_panel_fragments :: header}"></div>
+
+    <div class="row" style="">
+
+        <div th:replace="~{user_panel_fragments :: left_column}"></div>
+
+        <div class="col-10 overflow-auto" style="padding: 25px; ">
+
+            <h2 style="padding-bottom: 35px;">Панель администратора</h2>
+
+            <div th:replace="~{user_panel_fragments :: user_table}"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<div th:replace="~{user_panel_fragments :: form_manage_user}"></div>
+
+<script src="../main.js"></script>
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    viewUsers();
+</script>
+</body>
+</html>

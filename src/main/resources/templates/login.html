@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sign In</title>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+
+<div class="d-flex vh-100" style="">
+    <div class="d-flex w-100 justify-content-center ">
+            <div style="width: 400px; margin-top: 10%;">
+
+                <div class="alert alert-primary" role="alert" id="errors" th:if="${(param.error != null)}">
+                    Input is incorrect
+                </div>
+
+                <div class="alert alert-primary" role="alert" id="logout" th:if="${(param.logout != null) and (param.logout[0] == 'true')}">
+                    Вы вышли
+                </div>
+
+                <h2 style="">Please sign in</h2>
+                <form th:action="@{/login}" method="post">
+
+                        <input type="text" class="form-control" id="login" name="username" value="" style="margin-bottom: 1px;" placeholder="Email Address"/>
+                        <input type="password" class="form-control" id="password" name="password" value="" placeholder="Password"/>
+
+                    <button type="submit" class="btn btn-primary gradient-buttons" style="width: 100%; margin-top: 10px; ">Sign In</button>
+
+                </form>
+            </div>
+    </div>
+</div>
+
+</body>
+</html>

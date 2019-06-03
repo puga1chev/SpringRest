@@ -1,0 +1,21 @@
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #eeeeee;
+/*    font-family: Tahoma;
+    font-size: 13px;*/
+}
+
+.gradient-buttons {
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 49%, rgba(0,0,0,0.15) 51%, rgba(0,0,0,0.05));
+    background-repeat: repeat-x;
+}
+
+.fill-height {
+    min-height: 100%;
+    height:auto !important; /* cross-browser */
+    height: 100%; /* cross-browser */
+}

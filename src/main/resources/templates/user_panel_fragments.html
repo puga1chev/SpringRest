@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="left_column" class="col-2" style="background-color: #f5f5f5; min-height: 100%; padding: 25px 0px 0px 0px; ">
+
+    <ul class="nav flex-column nav-pills">
+        <li class="nav-item">
+            <a th:class="'nav-link ' + ${#httpServletRequest?.requestURL.lastIndexOf('/admin/users') > 0 ? 'active' : ''}" href="/admin/users">Администратор</a>
+        </li>
+        <li class="nav-item">
+            <a th:class="'nav-link ' + ${#httpServletRequest?.requestURL.lastIndexOf('/admin/users') > 0 ? '' : 'active'}" href="/user">Пользователь</a>
+        </li>
+    </ul>
+
+</div>
+<!--//todo доделать-->
+<div th:fragment="header" class="row" style="background: #000;" >
+    <div class="col-6" style="">
+        <div><h2 style="color: lightgrey;">Crud project</h2></div>
+    </div>
+    <div class="col-6" style="text-align: right; padding-top: 10px;">
+        <a class="" th:text="'Logout: ' + ${#request.userPrincipal.principal.username}" href="/logout" style="color: lightgrey;"></a>
+    </div>
+</div>
+
+<!-- Users table -->
+<div th:fragment="user_table" class="bg-white">
+    <div class="navbar-brand" style="background: linear-gradient(#f5f5f5 0%, #eeeeee 100%); width: 100%">
+        <h4 style="margin-left: 10px; ">Все пользователи</h4></div>
+
+    <div style="padding: 20px;">
+        <table class="table table-striped">
+            <thead class="" style="border-width: 0px;">
+            <tr style="font-weight: bold; ">
+                <th scope="col">Id</th>
+                <th scope="col">Имя пользователя</th>
+                <th scope="col">Логин</th>
+                <th scope="col">Роль</th>
+                <th scope="col">Редактирование</th>
+                <th scope="col">Удаление</th>
+            </tr>
+            </thead>
+            <tbody id="users_body" style="font-weight: normal;"></tbody>
+        </table>
+        <div style="">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#manageUserModal" onclick="fillManageUserForm();">Добавить</button>
+            <button type="button" class="btn btn-dark" onclick="viewUsers();">Обновить</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal window for add/edit user-->
+<div th:fragment="form_manage_user" class="modal fade" id="manageUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" text="Редактирование пользователя "></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form
+                    action=""
+                    name=""
+                    id="manageUserForm"
+                    method="post">
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="id">Id:</label>
+                        <input type="text" class="form-control" readonly="readonly" value="" id="user_id"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Имя пользователя:</label>
+                        <input type="text" class="form-control" name="username" id="user_username"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="login">Логин:</label>
+                        <input type="text" class="form-control" name="login" id="user_login"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль:</label>
+                        <input type="password" class="form-control" name="pass" id="user_pass"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="roles">Роль:</label>
+                        <select multiple="true" class="form-control" name="roles" id="user_roles">
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="manageUser();">Сохранить</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
